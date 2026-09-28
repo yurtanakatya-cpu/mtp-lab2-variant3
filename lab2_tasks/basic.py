@@ -31,3 +31,15 @@ def prime_numbers_up_to(limit: int = 100) -> list[int]:
         if is_prime:
             prime_numbers.append(candidate)
     return prime_numbers
+
+
+def find_minimum(numbers: list[int | float]) -> int | float:
+    """Найти минимальный элемент непустого списка."""
+    if not numbers:
+        raise ValueError("Список не должен быть пустым")
+
+    minimum = numbers[0]
+    for number in numbers[1:]:
+        if number < minimum:
+            minimum = number
+    return minimum
