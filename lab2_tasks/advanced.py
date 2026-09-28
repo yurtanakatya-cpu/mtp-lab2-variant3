@@ -1,5 +1,8 @@
 """Задания повышенной сложности."""
 
+import re
+from pathlib import Path
+
 
 def fibonacci_sequence(count: int) -> list[int]:
     """Вернуть первые ``count`` чисел последовательности Фибоначчи."""
@@ -14,3 +17,14 @@ def fibonacci_sequence(count: int) -> list[int]:
         sequence.append(first)
         first, second = second, first + second
     return sequence
+
+
+def word_frequencies(file_path: str | Path) -> dict[str, int]:
+    """Подсчитать частоту слов в текстовом файле."""
+    text = Path(file_path).read_text(encoding="utf-8")
+    words = re.findall(r"[^\W\d_]+", text.casefold())
+
+    frequencies = {}
+    for word in words:
+        frequencies[word] = frequencies.get(word, 0) + 1
+    return dict(sorted(frequencies.items()))
